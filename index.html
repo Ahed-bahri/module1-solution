@@ -19,6 +19,10 @@
              placeholder="list comma separated dishes you usually have for lunch"
              class="form-control">
          </div>
+        <!-- DEBUG -->
+         <p ng-show="{{lunchItems === undefined}}">
+             Show this if $scope.lunchItems is undefined.
+         </p>
          <div class="form-group">
              <button ng-click="lunchCalculate();" class="btn btn-default">
                  Check If Too Much
@@ -26,6 +30,10 @@
          </div>
          <div class="form-group message">
            {{ lunchMessage }}
+           <!-- DEBUG -->
+           <p ng-show="{{lunchMessage === undefined}}">
+               Show this if $scope.lunchMessage is undefined.
+           </p>
          </div>
    </div>
    <script src="angular.min.js"></script>
