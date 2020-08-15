@@ -1,56 +1,26 @@
 (function() {
   'use strict';
-
-  angular.module('LunchCheckApp', [])
+  angular.module('LunchCheck', [])
   .controller('LunchCheckController', LunchCheckController);
 
   LunchCheckController.$inject = ['$scope'];
-  function LunchCheckController($scope){
 
-    $scope.updateText = function (){
-      $scope.inputString = $scope.inputText;
-    };
+  function LunchCheckController($scope) {
+      $scope.lunchMessage = "";
+      $scope.lunchItems = "";
 
-    $scope.LunchCheck = function (){
-      var LunchCount = 0;
-      var stringToSplit = $scope.inputString;
-      if(stringToSplit != null){
-        var splitString = stringToSplit.split(',');
-        console.log(splitString);
+      $scope.lunchCalculate = function() {
+          var message = $scope.lunchMessage;
+          var items = $scope.lunchItems;
 
-        for(var i = 1; i <= splitString.length; i++){
-          if(splitString[i] != ""){
-            LunchCount += 1;
-          }
-          else{
-            LunchCount += 0;
-          }
-        };
-        $scope.LunchCount = LunchCount;
+          if (items == 0)
+              message = "Please enter data first"
+          else if (items.split(",").length < 4)
+              message = "Enjoy!";
+          else
+              message = "Too much!";
+          $scope.lunchMessage = message;
       }
-      else{
-        var splitString = "";
-        $scope.LunchCount = 0;
-      };
-      console.log($scope.LunchCount);
-
-    };
-
-    $scope.displayMessage = function (){
-
-      if($scope.LunchCount > 3 ){
-        return "Too Much!";
-      }
-      else if($scope.LunchCount >=1 && $scope.LunchCount <= 3){
-        return "Enjoy Your Meal!";
-      }
-      else{
-        return "Please enter data first";
-      }
-
-    };
-
-  };
-
+  }
 
 })();
